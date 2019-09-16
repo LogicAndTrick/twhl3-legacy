@@ -1,0 +1,17 @@
+php_value magic_quotes_gpc "1"
+
+Options -Indexes
+
+RewriteCond %{HTTP:VIA}                 !^$ [OR]
+RewriteCond %{HTTP:FORWARDED}           !^$ [OR]
+RewriteCond %{HTTP:USERAGENT_VIA}       !^$ [OR]
+RewriteCond %{HTTP:X_FORWARDED_FOR}     !^$ [OR]
+RewriteCond %{HTTP:PROXY_CONNECTION}    !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION}   !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
+RewriteCond %{REQUEST_URI} register\.php
+RewriteRule ^(.*)$ index.php [L]
+
+RewriteEngine On
+RewriteRule ^thread-([^-]*)-([^-]*)[-]?(.*)$ /forums.php?thread=$1&page=$2 [L]

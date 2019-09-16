@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /Legacy/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ redirect.php?file=$1 [L,QSA]
